@@ -1,16 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using EasyInvestTeste.Services.Implementation;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EasyInvestTeste.Controllers
 {
+    [Route("api/[controller]")]
+    [ApiController]
     public class InvestimentController : Controller
     {
-        public IActionResult Index()
+        [HttpGet]
+        public ActionResult Get()
         {
-            return View();
+            var _service = new InvestimentServiceImpl();
+
+            var list = _service.Find(); 
+
+            return Json(list);
         }
     }
 }
